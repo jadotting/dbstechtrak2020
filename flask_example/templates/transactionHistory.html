@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% set active_page = 'dropdown' %}
+{% set dropdown_page = 'transactionHistory' %}
+{% set show_others = "true" %}
+
+{% block title %} 
+
+Transaction History
+{% endblock %}
+
+{% block content %} 
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+				<p> {{msg}} </p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+		<table class="table">
+			<thead>
+    				<tr>
+      					<th scope="col">#</th>
+      					<th scope="col">eGift</th>
+      					<th scope="col">dateTime</th>
+					<th scope="col">customerID</th>
+      					<th scope="col">expensesCat</th>
+      					<th scope="col">amount</th>
+      					<th scope="col">message</th>
+      					<th scope="col">payeeID</th>
+    				</tr>
+			</thead>
+			<tbody>
+				{% for eGiftList, dataTimeList, custIDList, expensesCatList, amountList, messageList, payeeIDList in details %}
+					{% if eGiftList %} 
+   					<tr class=red>
+
+      						<th scope="row">{{loop.index}}</th>
+					
+      						<td>{{ eGiftList }}</td>
+      						<td>{{ dataTimeList }}</td>
+      						<td>{{ custIDList }}</td>
+      						<td>{{ expensesCatList }}</td>
+      						<td>{{ amountList }}</td>
+      						<td>{{ messageList}}</td>
+      						<td>{{ payeeIDList }}</td>
+    					</tr>
+						{% else %}    
+   					<tr class=blue>
+  						<th scope="row" >{{loop.index}}</th>
+					
+      						<td>{{ eGiftList }}</td>
+      						<td>{{ dataTimeList }}</td>
+      						<td>{{ custIDList }}</td>
+      						<td>{{ expensesCatList }}</td>
+      						<td>{{ amountList }}</td>
+      						<td>{{ messageList}}</td>
+      						<td>{{ payeeIDList }}</td>
+
+    					</tr>
+					{% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+{% endblock %}

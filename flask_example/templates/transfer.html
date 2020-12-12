@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% set active_page = 'dropdown' %}
+{% set dropdown_page = 'transfer' %}
+{% set show_others = "true" %}
+
+{% block title %} 
+Transfer page
+{% endblock %}
+
+{% block content %} 
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+				<p> {{msg}} </p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<p>Welcome, {{user}}</p>
+	<p>Transfer page </p>
+	<form action="#" method="post">
+	<p>Payee Phone Number: <input type="text" name="countryCode" placeholder="Country Code"/><input type="text" name="phoneNumber" /></p>
+	<p>Amount to be transfered: <input type="text" name="amount"/></p>
+	<p>
+		<label for="accountTypes">Account Type</label>
+			<select id="account" name="accountType">
+  				<option value="ca">Current Account</option>
+  				<option value="ma">Multiplier Account</option>
+  				<option value="sa">Saving Account</option>
+			</select> 
+	</p>
+	<p>Expenses Category: <input type="text" name="expensesCat"/> </p>
+	<p>
+		<label for="accountTypes">eGift? </label>
+			<select id="account" name="eGift">
+  				<option value="no">No</option>
+  				<option value="yes">Yes</option>
+			</select> 
+	</p>
+	<p><input type="text" name="message" placeholder="Message to user"/></p>
+	<p><input type="submit" value="submit" /></p>
+	</form>
+{% endblock %}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styleth.css')}}">
+	<title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">DBS TechTrak 2021</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+	{% if show_others %}
+      <li class="nav-item {{'active' if active_page == 'user' }}">
+        <a class="nav-link" href="/user">Main Page</a>
+      </li>
+      <li class="nav-item dropdown {{'active' if active_page == 'dropdown' }}">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Others
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item {{'active' if dropdown_page == 'transfer' }}" href="/trf">Make a transfer</a>
+          <a class="dropdown-item {{'active' if dropdown_page == 'transactionHistory' }}" href="/th">Transaction History</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+	{% else %}
+      <li class="nav-item {{'active' if active_page == 'login' }}">
+        <a class="nav-link" href="/">Login </a>
+      </li>
+	{% endif %}
+    </ul>
+	<form action="/finduser" method="post" class="form-inline my-2 my-lg-0">
+		<p> <input type="text" name="countrycode" placeholder="Country Code" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/> </p>
+		<p> <input type="text" name="phonenumber" placeholder="Enter a phonenumber" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/> </p>
+		<p> <input type="submit" value="Phone number search" class="btn btn-outline-success my-2 my-sm-0"/> </p>
+    		<input type="hidden" name="btn_identifier" value="phonenumbersearch" />
+	</form>
+  </div>
+</nav>
+	<center>
+		<image src="{{ url_for('static', filename='images/image1.png')}}">
+	</center>
+	<h1> <center> <b> <i> Hello world </i> </b> </center> </h1>
+	{% block content %}{% endblock %}
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% set active_page = 'finduser' %}
+{% set show_others = "true" %}
+
+{% block title %} 
+User
+{% endblock %}
+
+{% block content %} 
+	<p>{{userfound}}</p>
+	{% if userfound %}
+		<p> {{userdetails}} </p>
+	{% endif %}
+{% endblock %}

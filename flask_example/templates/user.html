@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% set active_page = "user" %}
+{% set show_others = "true" %}
+
+{% block title %} 
+User
+{% endblock %}
+
+{% block content %} 
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+				<p> {{msg}} </p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<p>Welcome, {{user}}</p>
+	<table class="table">
+		<thead>
+    			<tr>
+      				<th scope="col">#</th>
+      				<th scope="col">Account Name</th>
+				<th scope="col">Account Number</th>
+				<th scope="col">Available Balance</th>
+				<th scope="col">Linked</th>
+    			</tr>
+		</thead>
+		<tbody>
+		{% for accountName, accountNumber, availableBal, linked in accountDetails %}
+    			<tr>
+      				<th scope="row">{{loop.index}}</th>
+      				<td>{{accountName}}</td>
+				<td>{{accountNumber}}</td>
+				<td>{{availableBal}}</td>
+				<td>{{linked}}</td>
+    				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

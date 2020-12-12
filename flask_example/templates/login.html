@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% set active_page = 'login' %}
+
+{% block title %} 
+Login Page
+{% endblock %}
+
+{% block content %} 
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for msg in messages %}
+				<p> {{msg}} </p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+<form action="#" method="post">
+	<p> Name: <input type="text" name="nm" /></p>
+	<p> Password: <input type="password" name="pass" placeholder="enter password" /></p>
+	<p><input type="submit" value="submit" /></p>
+	<p>
+		<label for="rem">Remember me for 5 days: </label>
+			<select id="account" name="test">
+  				<option value="yes">Yes</option>
+  				<option value="no">No</option>
+			</select> 
+	</p>
+</form>
+{% endblock %}
